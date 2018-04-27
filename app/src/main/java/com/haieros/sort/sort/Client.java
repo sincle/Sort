@@ -1,7 +1,5 @@
 package com.haieros.sort.sort;
 
-import java.util.Arrays;
-
 /**
  * Created by Kang on 2018/4/24.
  */
@@ -9,17 +7,18 @@ import java.util.Arrays;
 public class Client {
 
     public static void main(String[] agrs) {
-        int[] data = new int[8];
+        int[] data = new int[15000000];
         for (int i = 0; i < data.length; i++) {
-            data[i] = (int) (Math.random() * 20);
+            data[i] = (int) (Math.random() * 15002000);
         }
-//        int[] data = {5,8,1,9,3,41,21,12,74,2};
-        String arrString = Arrays.toString(data);
-        System.out.println("源数据:" + arrString.toString());
+        //int[] data = {4,7,3,6,8,2};
+        //String arrString = Arrays.toString(data);
+        //System.out.println("源数据:" + arrString.toString());
         //Sort.bubbleSort(data);
         //Sort.selectionSort(data);
         //Sort.insertSort(data);
-       // Sort.shellSort(data);
-        Sort.mergeSort(data);
+        //Sort.shellSort(data);
+       // Sort.mergeSort(data);
+        Sort.quickSort(data);
     }
 }

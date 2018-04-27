@@ -177,7 +177,7 @@ public class Sort {
         long end = System.currentTimeMillis();
         String arrString = Arrays.toString(data);
         System.out.println("归并排序: 时间:" + (end - start) + "ms");
-        System.out.println("reuslt:" + arrString);
+        //System.out.println("reuslt:" + arrString);
     }
     private static void merge(int[] a, int low, int high) {
         int mid = (low + high) / 2;
@@ -188,7 +188,7 @@ public class Sort {
             merge(a, mid + 1, high);
             // 左右归并
             merge(a, low, mid, high);
-            System.out.println(Arrays.toString(a));
+           // System.out.println(Arrays.toString(a));
         }
     }
 
@@ -219,7 +219,50 @@ public class Sort {
         }
     }
 
-    public static void quickSort(int[] data){
+    /**
+     *
+     * @param a
+     * @param low
+     * @param hight
+     */
+    public static void sort(int a[], int low, int hight) {
+        int i, j, index;
+        if (low > hight) {
+            return;
+        }
+        i = low;
+        j = hight;
+        index = a[i]; // 用子表的第一个记录做基准
+        while (i < j) { // 从表的两端交替向中间扫描
+            while (i < j && a[j] >= index)
+                j--;
+            if (i < j)
+                a[i++] = a[j];// 用比基准小的记录替换低位记录
+            while (i < j && a[i] < index)
+                i++;
+            if (i < j) // 用比基准大的记录替换高位记录
+                a[j--] = a[i];
+        }
+        a[i] = index;// 将基准数值替换回 a[i]
+        sort(a, low, i - 1); // 对低子表进行递归排序
+        sort(a, i + 1, hight); // 对高子表进行递归排序
+    }
 
+    /**
+     * 通过一趟排序将待排记录分隔成独立的两部分，其中一部分记录的关键字均比另一部分的关键字小，
+     * 则可分别对这两部分记录继续进行排序，以达到整个序列有序。
+     * @param a
+     */
+    public static void quickSort(int a[]) {
+
+        long start = System.currentTimeMillis();
+        //开始
+
+        sort(a, 0, a.length - 1);
+        //结束
+        long end = System.currentTimeMillis();
+        String arrString = Arrays.toString(a);
+        System.out.println("快速排序: 时间:" + (end - start) + "ms");
+        //System.out.println("reuslt:" + arrString);
     }
 }
